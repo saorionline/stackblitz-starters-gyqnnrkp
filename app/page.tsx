@@ -283,10 +283,13 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
           href={proyecto.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150"
+          className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150 group-hover:translate-x-0.5"
         >
           <IconGithub size={13} />
           ver repositorio
+          <span className="ml-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+            <IconArrow />
+          </span>
         </a>
 
         {/* SI EL PROYECTO ES SHOP, MUESTRA EL BOTÓN EN VIVO */}
@@ -301,19 +304,6 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
           </a>
         )}
       </div>
-
-      <a
-        href={proyecto.githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150 group-hover:translate-x-0.5"
-      >
-        <IconGithub size={13} />
-        ver repositorio
-        <span className="ml-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-          <IconArrow />
-        </span>
-      </a>
     </article>
   );
 }
