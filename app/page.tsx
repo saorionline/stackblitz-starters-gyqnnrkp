@@ -30,6 +30,17 @@ interface GrupoHabilidades {
 
 const proyectos: Proyecto[] = [
   {
+    titulo: 'PM Dashboard & Training',
+    subtitulo: 'Core Ledger · Centro de Gestión de Producto y Growth',
+    descripcion:
+      'Dashboard interactivo enfocado en la gestión de producto y analítica de crecimiento. Implementa tableros Kanban interactivos para Sprints, rastreadores de diseño, cronogramas de hitos técnicos, previsualizaciones móviles y módulos avanzados de analítica visual para embudos de conversión y retención (DAU).',
+    periodo: 'En Vivo',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'react-beautiful-dnd', 'UX/UI'],
+    githubUrl: '', // Al dejarlo vacío, no se mostrará el botón de GitHub
+    liveUrl: 'https://product-ux-gules.vercel.app/', // Modifica esta URL si usas un subdominio distinto en Vercel
+    categoria: 'ui-ux', // Le dará el elegante color fucsia de diseño de interfaz / experiencia
+  },
+  {
   titulo: 'Support-Hub-UI',
   subtitulo: 'Omnichannel Support Hub · Phone, Chat, Scheduling & Commerce',
   descripcion:
