@@ -11,7 +11,8 @@ interface Proyecto {
   periodo: string;
   tags: string[];
   githubUrl: string;
-  categoria: 'fintech' | 'infra' | 'data' | 'automation' | 'backend';
+  liveUrl?: string; // Propiedad opcional para enlaces en vivo
+  categoria: 'fintech' | 'infra' | 'data' | 'automation' | 'backend' | 'ui-ux';
 }
 
 interface Habilidad {
@@ -29,14 +30,25 @@ interface GrupoHabilidades {
 
 const proyectos: Proyecto[] = [
   {
+    titulo: 'Sales & Business Design',
+    subtitulo: 'Core Ledger · Command Center de Analítica e Interfaz',
+    descripcion:
+      'Diseño y desarrollo de un panel de control unificado enfocado en operaciones comerciales: marca, campañas de marketing, plantillas automatizadas de correo, programación social y analítica de datos en tiempo real.',
+    periodo: 'En Vivo',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'UX/UI'],
+    githubUrl: '', // Al dejarlo vacío, no se mostrará el botón de GitHub
+    liveUrl: 'https://creative-sales.vercel.app/', // Nueva dirección de Vercel añadida
+    categoria: 'ui-ux',
+  },
+  {
     titulo: 'Shop',
     subtitulo: 'Desarrollo Full Stack Web',
     descripcion:
       'Aplicación comercial en vivo con base de datos relacional en SQL Supabase. Integra de extremo a extremo la lógica de negocio del backend y la interfaz dinámica del frontend, conectadas y desplegadas de forma continua a través de Railway.',
-    periodo: 'En Vivo', // O el mes/año en que lo terminaste
+    periodo: 'En Vivo',
     tags: ['React', 'Next.js', 'SQL', 'Supabase', 'Vercel', 'Full Stack'],
-    githubUrl: 'https://github.com/saorionline/NestShop', // Pon tu link real aquí
-    categoria: 'backend', // Le dará un color rosa elegante de backend, o puedes cambiarlo
+    githubUrl: 'https://github.com/saorionline/NestShop',
+    categoria: 'backend',
   },
   {
     titulo: 'Banking-Engine',
@@ -122,7 +134,7 @@ const habilidades: GrupoHabilidades[] = [
     icono: '⬟',
     habilidades: [
       { nombre: 'Git / GitHub', nivel: 4 },
-      { nombre: 'Monorepo (Turborepo)', nivel: 4 },
+      { fontNombre: 'Monorepo (Turborepo)', nivel: 4 },
       { nombre: 'CI/CD Pipelines', nivel: 4 },
       { nombre: 'Automatización Low-Code', nivel: 4 },
       { nombre: 'Excel Avanzado / Office Suite', nivel: 4 },
@@ -167,6 +179,12 @@ const categoriaConfig: Record<
     badge: 'bg-pink-500/10 text-pink-300 ring-1 ring-pink-500/30',
     badgeText: 'backend',
     dot: 'bg-pink-400',
+  },
+  'ui-ux': {
+    border: 'border-fuchsia-500',
+    badge: 'bg-fuchsia-500/10 text-fuchsia-300 ring-1 ring-fuchsia-500/30',
+    badgeText: 'ui / ux',
+    dot: 'bg-fuchsia-400',
   },
 };
 
@@ -275,30 +293,43 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
         ))}
       </div>
 
-      {/* GitHub button */}
+      {/* Action Buttons */}
+      <div className="flex flex-wrap gap-2 items-center mt-auto">
+        {/* Solo renderiza el botón de GitHub si la URL no está vacía */}
+        {proyecto.githubUrl && (
+          <a
+            href={proyecto.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150 group-hover:translate-x-0.5"
+          >
+            <IconGithub size={13} />
+            ver repositorio
+            <span className="ml-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
+              <IconArrow />
+            </span>
+          </a>
+        )}
 
-      {/* GitHub button */}
-      <div className="flex gap-2 items-center mt-auto">
-        <a
-          href={proyecto.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150 group-hover:translate-x-0.5"
-        >
-          <IconGithub size={13} />
-          ver repositorio
-          <span className="ml-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
-            <IconArrow />
-          </span>
-        </a>
-
-        {/* SI EL PROYECTO ES SHOP, MUESTRA EL BOTÓN EN VIVO */}
+        {/* Lógica condicional para el enlace en vivo del proyecto de Shop */}
         {proyecto.titulo === 'Shop' && (
           <a
             href="https://nestshop-production-a1c1.up.railway.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 self-start text-xs font-mono text-emerald-400 hover:text-emerald-300 px-3 py-1.5 rounded-lg border border-emerald-500/30 hover:border-emerald-500/60 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all duration-150"
+          >
+            <span>●</span> ver app en vivo
+          </a>
+        )}
+
+        {/* Lógica genérica para cualquier proyecto con liveUrl (como tu nueva tarjeta) */}
+        {proyecto.titulo !== 'Shop' && proyecto.liveUrl && (
+          <a
+            href={proyecto.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 self-start text-xs font-mono text-fuchsia-400 hover:text-fuchsia-300 px-3 py-1.5 rounded-lg border border-fuchsia-500/30 hover:border-fuchsia-500/60 bg-fuchsia-500/10 hover:bg-fuchsia-500/20 transition-all duration-150"
           >
             <span>●</span> ver app en vivo
           </a>
@@ -416,83 +447,4 @@ export default function Portfolio() {
       </section>
 
       {/* ── Divider ── */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
-
-      {/* ── Skills ── */}
-      <section className="px-6 py-20 max-w-6xl mx-auto">
-        <div className="mb-10">
-          <span className="font-mono text-xs text-indigo-400 tracking-widest uppercase">
-            stack
-          </span>
-          <h2 className="text-2xl font-semibold text-white mt-2">
-            Habilidades técnicas
-          </h2>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-1 mb-8 p-1 bg-slate-800/60 border border-slate-700/50 rounded-xl w-fit">
-          {habilidades.map((grupo, idx) => (
-            <button
-              key={grupo.tab}
-              onClick={() => setTabActiva(idx)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                tabActiva === idx
-                  ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
-              }`}
-            >
-              <span className="mr-1.5 text-xs opacity-70">{grupo.icono}</span>
-              {grupo.tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Skill grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {habilidades[tabActiva].habilidades.map((habilidad) => (
-            <div
-              key={habilidad.nombre}
-              className="flex items-center justify-between gap-4 bg-slate-800/50 border border-slate-700/40 rounded-xl px-4 py-3 hover:bg-slate-800/80 transition-colors duration-150"
-            >
-              <span className="text-sm text-slate-300 font-mono truncate">
-                {habilidad.nombre}
-              </span>
-              <SkillBar nivel={habilidad.nivel} />
-            </div>
-          ))}
-        </div>
-
-        {/* Legend */}
-        <div className="flex items-center gap-2 mt-6">
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div
-                key={i}
-                className="h-1 w-5 rounded-full bg-indigo-400 opacity-30 hover:opacity-100 transition-opacity"
-              />
-            ))}
-          </div>
-          <span className="font-mono text-[10px] text-slate-600 ml-1">
-            1 = básico · 5 = experto
-          </span>
-        </div>
-      </section>
-
-      {/* ── Footer ── */}
-      <footer className="border-t border-slate-800 px-6 py-10 text-center">
-        <p className="font-mono text-xs text-slate-600">
-          © 2026 Saori Isabel Tovar ·{' '}
-          <a
-            href="mailto:saorisabeltovar@gmail.com"
-            className="text-slate-500 hover:text-indigo-400 transition-colors"
-          >
-            saorisabeltovar@gmail.com
-          </a>
-        </p>
-        <p className="font-mono text-[10px] text-slate-700 mt-1 tracking-widest">
-          BOGOTÁ · COLOMBIA
-        </p>
-      </footer>
-    </div>
-  );
-}
+      <div className="w-full h
