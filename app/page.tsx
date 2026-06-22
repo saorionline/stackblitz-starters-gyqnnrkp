@@ -30,6 +30,17 @@ interface GrupoHabilidades {
 
 const proyectos: Proyecto[] = [
   {
+  titulo: 'Support-Hub-UI',
+  subtitulo: 'Omnichannel Support Hub · Phone, Chat, Scheduling & Commerce',
+  descripcion:
+    'Plataforma modular de soporte omnicanal con cola de tickets filtrable por canal, prioridad y estado, panel de chat en vivo con indicador de escritura animado, calendario de citas en modos Health y Education, lookup de órdenes con acciones de reembolso y escalación, tracker de migración de sistema y dashboard de KPIs con gráficas en tiempo real.',
+  periodo: 'En Vivo',
+  tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'date-fns', 'Dashboard'],
+  githubUrl: '',
+  liveUrl: 'https://project-2-support-ui.vercel.app/',
+  categoria: 'automation',
+},
+  {
     titulo: 'Sales & Business Design',
     subtitulo: 'Core Ledger · Command Center de Analítica e Interfaz',
     descripcion:
