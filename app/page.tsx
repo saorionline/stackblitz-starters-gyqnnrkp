@@ -419,7 +419,7 @@ export default function Portfolio() {
       <section className="px-6 py-20 max-w-6xl mx-auto">
         <div className="mb-12">
           <span className="font-mono text-xs text-indigo-400 tracking-widest uppercase">
-            experiencia
+            experiencia front-end
           </span>
           <h2 className="text-2xl font-semibold text-white mt-2">
             Proyectos destacados
