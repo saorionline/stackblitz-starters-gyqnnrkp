@@ -30,6 +30,17 @@ interface GrupoHabilidades {
 
 const proyectos: Proyecto[] = [
   {
+    titulo: 'Executive Operations Center',
+    subtitulo: 'Core Ledger · Command Center de Asistencia Ejecutiva y Operaciones',
+    descripcion:
+      'Panel operativo premium con diseño Glassmorphism enfocado en la gestión de alta dirección. Centraliza flujos críticos como agendas semanales codificadas, control de itinerarios de viaje, colas de aprobación documental (Salud/Educación), directorios de equipo en tiempo real y flujos automatizados de reclutamiento.',
+    periodo: 'En Vivo',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'Executive Ops', 'UX/UI'],
+    githubUrl: '', // Al dejarlo vacío, no se mostrará el botón de GitHub
+    liveUrl: 'https://ceo-assistance.vercel.app/',
+    categoria: 'automation', // Resalta el enfoque en automatización de flujos y eficiencia operativa
+  },
+  {
     titulo: 'PM Dashboard & Training',
     subtitulo: 'Core Ledger · Centro de Gestión de Producto y Growth',
     descripcion:
