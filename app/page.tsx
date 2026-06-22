@@ -173,7 +173,7 @@ const habilidades: GrupoHabilidades[] = [
       { nombre: 'Monorepo (Turborepo)', nivel: 4 },
       { nombre: 'CI/CD Pipelines', nivel: 4 },
       { nombre: 'Automatización Low-Code', nivel: 4 },
-      { fontNombre: 'Excel Avanzado / Office Suite', nivel: 4 },
+      { nombre: 'Excel Avanzado / Office Suite', nivel: 4 },
       { nombre: 'Slack / Discord / Zoom', nivel: 5 },
       { nombre: 'Coordinación de Proyectos', nivel: 4 },
     ],
