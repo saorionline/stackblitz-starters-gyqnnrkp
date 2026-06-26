@@ -12,7 +12,7 @@ interface Proyecto {
   tags: string[];
   githubUrl: string;
   liveUrl?: string;
-  categoria: 'fintech' | 'infra' | 'data' | 'automation' | 'backend' | 'ui-ux';
+  categoria: 'fintech' | 'infra' | 'data' | 'automation' | 'backend' | 'ui-ux' | 'sandbox' | 'backend-ops';
 }
 
 interface Habilidad {
@@ -77,64 +77,24 @@ const proyectosFrontend: Proyecto[] = [
 
 const proyectosBackend: Proyecto[] = [
   {
-    titulo: 'Shop',
-    subtitulo: 'Desarrollo Full Stack Web',
+    titulo: 'Enterprise Dark Pipeline',
+    subtitulo: 'Real-Time Data Lifecycle Prototype',
     descripcion:
-      'Aplicación comercial en vivo con base de datos relacional en SQL Supabase. Integra de extremo a extremo la lógica de negocio del backend y la interfaz dinámica del frontend, conectadas y desplegadas de forma continua a través de Railway.',
-    periodo: 'En Vivo',
-    tags: ['React', 'Next.js', 'SQL', 'Supabase', 'Vercel', 'Full Stack'],
-    githubUrl: 'https://github.com/saorionline/NestShop',
-    categoria: 'backend',
+      'Sistema de ingestión y procesamiento de datos en segundo plano diseñado para eliminar la deriva de estado y mantener la estabilidad del sistema. Arquitectura centrada en eficiencia SQL "aburrida": modelado relacional explícito, índices B-Tree compuestos y parciales, máquina de estado determinista (NestJS) y sincronización reactiva mediante replicación WAL dual-channel vía WebSockets de Supabase hacia una UI puramente reactiva — sin polling, sin estado local duplicado.',
+    periodo: 'Prototype',
+    tags: ['React', 'NestJS', 'PostgreSQL', 'Supabase', 'TypeScript', 'Executive Ops', 'Data Pipelines', 'Real-Time Systems'],
+    githubUrl: 'https://github.com/saorionline/enterprise-dark-pipeline',
+    categoria: 'backend-ops',
   },
   {
-    titulo: 'Banking-Engine',
-    subtitulo: 'Honest Taskers · Arquitectura Financiera Backend',
+    titulo: 'Full-Stack Scientific Sandbox',
+    subtitulo: 'Real-Time Data Lifecycle Prototype (React · NestJS · Supabase)',
     descripcion:
-      'Motor bancario para transacciones líquidas con validaciones estrictas de balance y reglas de negocio complejas para alta disponibilidad.',
-    periodo: 'Mar 2025 – Abr 2026',
-    tags: ['NestJS', 'TypeScript', 'Fintech', 'PostgreSQL', 'REST API'],
-    githubUrl: 'https://github.com/saorionline/Banking-Engine',
-    categoria: 'fintech',
-  },
-  {
-    titulo: 'MonorepoVault',
-    subtitulo: 'Horatio · Infraestructura y Estructuración de Código',
-    descripcion:
-      'Arquitectura de monorepo escalable para centralizar múltiples aplicaciones, unificando pipelines de CI/CD y reduciendo fricción en equipos multidisciplinarios.',
-    periodo: 'Dic 2023 – Ene 2025',
-    tags: ['Monorepo', 'TypeScript', 'CI/CD', 'Next.js', 'Turborepo'],
-    githubUrl: 'https://github.com/saorionline/MonorepoVault',
-    categoria: 'infra',
-  },
-  {
-    titulo: 'Inventory-Logic-DB',
-    subtitulo: 'Emapta · Modelado de Datos e Inventarios',
-    descripcion:
-      'Base de datos relacional para control de inventarios con indexación eficiente, traduciendo flujos comerciales en modelos limpios y métricas de stock precisas.',
-    periodo: 'Feb 2022 – Oct 2023',
-    tags: ['PostgreSQL', 'Supabase', 'NestJS', 'TypeScript', 'SQL'],
-    githubUrl: 'https://github.com/saorionline/Inventory-Logic-Database',
-    categoria: 'data',
-  },
-  {
-    titulo: 'Automating-Exec-Tasks',
-    subtitulo: 'AAA Medical Billing · Scripts de Eficiencia',
-    descripcion:
-      'Flujos automatizados de extremo a extremo integrando APIs y herramientas digitales para eliminar cuellos de botella operativos y reducir el error humano.',
-    periodo: 'Nov 2020 – Ene 2022',
-    tags: ['Automatización', 'APIs', 'Low-Code', 'Scripts'],
-    githubUrl: 'https://github.com/saorionline/Automating-Executive-Tasks',
-    categoria: 'automation',
-  },
-  {
-    titulo: 'NestShop',
-    subtitulo: 'Vinali Staffing · Backend Comercial Web',
-    descripcion:
-      'API comercial robusta con módulos para gestión de productos, órdenes de compra y pasarelas de pago, aplicando código limpio y patrones de diseño modernos.',
-    periodo: 'Ene 2020 – Oct 2020',
-    tags: ['NestJS', 'TypeScript', 'E-commerce', 'REST API', 'Pagos'],
-    githubUrl: 'https://github.com/saorionline/NestShop',
-    categoria: 'backend',
+      'Una aplicación educativa interactiva diseñada para demostrar visualmente el flujo de datos secuencial y en tiempo real a través de las tres capas core del stack. Funciona como un entorno experimental simplificado ("Scientific Sandbox") que elimina la sobrecarga de infraestructura empresarial para aislar y validar la mecánica exacta del ciclo de vida de la información. Core features: Simulación de Alta Concurrencia — botón interactivo en UI que dispara eventos críticos emulando ráfagas de peticiones simultáneas. Contrato de Datos Unificado — sincronización estricta basada en tipos e interfaces compartidas entre cliente y servidor para erradicar errores humanos. Pipeline en Tiempo Real — mutación y persistencia directa en base de datos relacional con transmisión reactiva inmediata hacia el cliente a través de sockets distribuidos.',
+    periodo: 'En Desarrollo',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'NestJS', 'Supabase', 'PostgreSQL', 'Architecture', 'Full-Stack', 'Real-Time Data'],
+    githubUrl: 'https://github.com/saorionline/scientific-sandbox',
+    categoria: 'sandbox',
   },
 ];
 
@@ -221,6 +181,18 @@ const categoriaConfig: Record<
     badge: 'bg-fuchsia-500/10 text-fuchsia-300 ring-1 ring-fuchsia-500/30',
     badgeText: 'ui / ux',
     dot: 'bg-fuchsia-400',
+  },
+  sandbox: {
+    border: 'border-emerald-500',
+    badge: 'bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-500/30',
+    badgeText: 'sandbox',
+    dot: 'bg-emerald-400',
+  },
+  'backend-ops': {
+    border: 'border-sky-500',
+    badge: 'bg-sky-500/10 text-sky-300 ring-1 ring-sky-500/30',
+    badgeText: 'backend ops',
+    dot: 'bg-sky-400',
   },
 };
 
@@ -340,18 +312,7 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
           </a>
         )}
 
-        {proyecto.titulo === 'Shop' && (
-          <a
-            href="https://nestshop-production-a1c1.up.railway.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start text-xs font-mono text-emerald-400 hover:text-emerald-300 px-3 py-1.5 rounded-lg border border-emerald-500/30 hover:border-emerald-500/60 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all duration-150"
-          >
-            <span>●</span> ver app en vivo
-          </a>
-        )}
-
-        {proyecto.titulo !== 'Shop' && proyecto.liveUrl && (
+        {proyecto.liveUrl && (
           <a
             href={proyecto.liveUrl}
             target="_blank"
@@ -471,7 +432,7 @@ export default function Portfolio() {
             Arquitectura del Lado del Servidor y Datos
           </h2>
           <p className="text-slate-500 text-sm mt-1">
-            {proyectosBackend.length} proyectos · Foco en Escalabilidad, Motores Financieros y Bases de Datos
+            {proyectosBackend.length} proyectos · Foco en Arquitectura Full-Stack, Datos en Tiempo Real e Infraestructura Modular
           </p>
         </div>
 
