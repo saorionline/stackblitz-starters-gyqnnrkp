@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "title": "Saori's Portfolio | Web Developer & CEO Partner",
+    "description": "Robust backend architecture and scalable dynamic interfaces. Specialized in data pipelines and operational optimization."
+  },
+  "hero": {
+    "tagline": "— portfolio 2026 —",
+    "role": "Hybrid Developer: Automation, Backend & UX/UI",
+    "subheading": "Robust backend architecture + scalable dynamic interfaces.",
+    "location": "Bogotá, Colombia · Español / English C2 / French B2"
+  },
+  "sections": {
+    "frontend": {
+      "tag": "front-end experience",
+      "title": "Control Interfaces & Interactivity",
+      "subtitle": "projects · Focus on UX/UI, Dynamic State, and Dashboards"
+    },
+    "backend": {
+      "tag": "back-end experience",
+      "title": "Server-Side Architecture & Data",
+      "subtitle": "projects · Focus on Full-Stack Architecture, Real-Time Data, and Modular Infrastructure"
+    },
+    "stack": {
+      "tag": "stack",
+      "title": "Technical Skills",
+      "legend": "1 = basic · 5 = expert"
+    }
+  },
+  "ui": {
+    "view_repo": "view repository",
+    "view_live": "● view live app"
+  },
+  "status": {
+    "live": "Live",
+    "development": "In Development",
+    "prototype": "Prototype"
+  },
+  "skills": {
+    "tabs": {
+      "frontend": "Frontend & UX",
+      "backend": "Backend & DB",
+      "tools": "Tools"
+    },
+    "names": {
+      "nestjs_architecture": "NestJS (Modular Architecture)",
+      "relational_modeling": "Relational Modeling",
+      "unit_testing": "Unit Testing / Debugging",
+      "low_code_automation": "Low-Code Automation",
+      "advanced_excel": "Advanced Excel / Office Suite",
+      "project_coordination": "Project Coordination"
+    }
+  },
+  "projects": {
+    "subtitles": {
+      "ops_center": "Core Ledger · Executive Assistance & Operations Command Center",
+      "growth_center": "Core Ledger · Product Management & Growth Center",
+      "analytics_center": "Core Ledger · Analytics & Interface Command Center",
+      "support_hub": "Omnichannel Support Hub · Phone, Chat, Scheduling & Commerce",
+      "enterprise_pipeline": "Real-Time Data Lifecycle Prototype",
+      "scientific_sandbox": "Real-Time Data Lifecycle Prototype (React · NestJS · Supabase)"
+    },
+    "descriptions": {
+      "exec_ops": "Premium operational panel with Glassmorphism design focused on senior management. Centralizes critical workflows: coded weekly agendas, travel itinerary control, document approval queues (Health/Education), real-time team directories, and automated recruitment workflows.",
+      "pm_dashboard": "Interactive dashboard focused on product management and growth analytics. Implements Kanban boards for Sprints, design trackers, technical milestone timelines, mobile previews, and advanced visual analytics modules for conversion funnels and retention (DAU).",
+      "support_hub": "Modular omnichannel support platform with a filterable ticket queue (channel, priority, status), live chat panel with animated typing indicator, appointment calendar in Health and Education modes, order lookup with refund and escalation actions, system migration tracker, and real-time KPI dashboard.",
+      "sales_design": "Design and development of a unified control panel focused on commercial operations: branding, marketing campaigns, automated email templates, social scheduling, and real-time data analytics.",
+      "enterprise_pipeline": "Background data ingestion and processing system designed to eliminate state drift and maintain system stability. Architecture centered on boring SQL efficiency: explicit relational modeling, composite and partial B-Tree indexes, deterministic state machine (NestJS), and reactive synchronization via dual-channel WAL replication through Supabase WebSockets — no polling, no duplicated local state.",
+      "scientific_sandbox": "An interactive educational application designed to visually demonstrate sequential and real-time data flow across the three core stack layers. Functions as a simplified experimental environment that eliminates enterprise infrastructure overhead to isolate and validate the exact mechanics of the information lifecycle. Core features: High-Concurrency Simulation, Unified Data Contract (shared types between client and server), and a Real-Time Pipeline with direct DB persistence and reactive streaming via distributed sockets."
+    }
+  },
+  "footer": {
+    "location": "BOGOTÁ · COLOMBIA"
+  }
+}

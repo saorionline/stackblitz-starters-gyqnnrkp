@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "title": "Portafolio de Saori | Desarrolladora Web & CEO Partner",
+    "description": "Arquitectura backend robusta e interfaces dinámicas escalables. Especialista en pipelines de datos y optimización operativa."
+  },
+  "hero": {
+    "tagline": "— portafolio 2026 —",
+    "role": "Desarrolladora Híbrida: Automatización, Backend & UX/UI",
+    "subheading": "Arquitectura backend robusta + interfaces dinámicas escalables.",
+    "location": "Bogotá, Colombia · Español / English C2 / French B2"
+  },
+  "sections": {
+    "frontend": {
+      "tag": "experiencia front-end",
+      "title": "Interfaces de Control e Interactividad",
+      "subtitle": "proyectos · Foco en UX/UI, Estado Dinámico y Dashboards"
+    },
+    "backend": {
+      "tag": "experiencia back-end",
+      "title": "Arquitectura del Lado del Servidor y Datos",
+      "subtitle": "proyectos · Foco en Arquitectura Full-Stack, Datos en Tiempo Real e Infraestructura Modular"
+    },
+    "stack": {
+      "tag": "stack",
+      "title": "Habilidades técnicas",
+      "legend": "1 = básico · 5 = experto"
+    }
+  },
+  "ui": {
+    "view_repo": "ver repositorio",
+    "view_live": "● ver app en vivo"
+  },
+  "status": {
+    "live": "En Vivo",
+    "development": "En Desarrollo",
+    "prototype": "Prototipo"
+  },
+  "skills": {
+    "tabs": {
+      "frontend": "Frontend & UX",
+      "backend": "Backend & DB",
+      "tools": "Herramientas"
+    },
+    "names": {
+      "nestjs_architecture": "NestJS (Arquitectura Modular)",
+      "relational_modeling": "Modelado Relacional",
+      "unit_testing": "Pruebas Unitarias / Debugging",
+      "low_code_automation": "Automatización Low-Code",
+      "advanced_excel": "Excel Avanzado / Office Suite",
+      "project_coordination": "Coordinación de Proyectos"
+    }
+  },
+  "projects": {
+    "subtitles": {
+      "ops_center": "Core Ledger · Command Center de Asistencia Ejecutiva y Operaciones",
+      "growth_center": "Core Ledger · Centro de Gestión de Producto y Growth",
+      "analytics_center": "Core Ledger · Command Center de Analítica e Interfaz",
+      "support_hub": "Omnichannel Support Hub · Phone, Chat, Scheduling & Commerce",
+      "enterprise_pipeline": "Real-Time Data Lifecycle Prototype",
+      "scientific_sandbox": "Real-Time Data Lifecycle Prototype (React · NestJS · Supabase)"
+    },
+    "descriptions": {
+      "exec_ops": "Panel operativo premium con diseño Glassmorphism enfocado en la gestión de alta dirección. Centraliza flujos críticos como agendas semanales codificadas, control de itinerarios de viaje, colas de aprobación documental (Salud/Educación), directorios de equipo en tiempo real y flujos automatizados de reclutamiento.",
+      "pm_dashboard": "Dashboard interactivo enfocado en la gestión de producto y analítica de crecimiento. Implementa tableros Kanban interactivos para Sprints, rastreadores de diseño, cronogramas de hitos técnicos, previsualizaciones móviles y módulos avanzados de analítica visual para embudos de conversión y retención (DAU).",
+      "support_hub": "Plataforma modular de soporte omnicanal con cola de tickets filtrable por canal, prioridad y estado, panel de chat en vivo con indicador de escritura animado, calendario de citas en modos Health y Education, lookup de órdenes con acciones de reembolso y escalación, tracker de migración de sistema y dashboard de KPIs con gráficas en tiempo real.",
+      "sales_design": "Diseño y desarrollo de un panel de control unificado enfocado en operaciones comerciales: marca, campañas de marketing, plantillas automatizadas de correo, programación social y analítica de datos en tiempo real.",
+      "enterprise_pipeline": "Sistema de ingestión y procesamiento de datos en segundo plano diseñado para eliminar la deriva de estado y mantener la estabilidad del sistema. Arquitectura centrada en eficiencia SQL «aburrida»: modelado relacional explícito, índices B-Tree compuestos y parciales, máquina de estado determinista (NestJS) y sincronización reactiva mediante replicación WAL dual-channel vía WebSockets de Supabase — sin polling, sin estado local duplicado.",
+      "scientific_sandbox": "Aplicación educativa interactiva diseñada para demostrar visualmente el flujo de datos secuencial y en tiempo real a través de las tres capas core del stack. Funciona como un entorno experimental simplificado que elimina la sobrecarga de infraestructura empresarial para aislar y validar la mecánica exacta del ciclo de vida de la información. Features: Simulación de Alta Concurrencia, Contrato de Datos Unificado (tipos compartidos entre cliente y servidor) y Pipeline en Tiempo Real con persistencia directa en base de datos y transmisión reactiva vía sockets distribuidos."
+    }
+  },
+  "footer": {
+    "location": "BOGOTÁ · COLOMBIA"
+  }
+}

@@ -1,149 +1,103 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-interface Proyecto {
-  titulo: string;
-  subtitulo: string;
-  descripcion: string;
-  periodo: string;
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  period: string;
   tags: string[];
   githubUrl: string;
   liveUrl?: string;
-  categoria: 'fintech' | 'infra' | 'data' | 'automation' | 'backend' | 'ui-ux' | 'sandbox' | 'backend-ops';
+  category: 'fintech' | 'infra' | 'data' | 'automation' | 'backend' | 'ui-ux' | 'sandbox' | 'backend-ops';
 }
 
-interface Habilidad {
-  nombre: string;
-  nivel: number;
+interface Skill {
+  name: string;
+  level: number;
 }
 
-interface GrupoHabilidades {
+interface SkillGroup {
   tab: string;
-  icono: string;
-  habilidades: Habilidad[];
+  icon: string;
+  skills: Skill[];
 }
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const proyectosFrontend: Proyecto[] = [
+const frontendProjects: Project[] = [
   {
-    titulo: 'Executive Operations Center',
-    subtitulo: 'Core Ledger · Command Center de Asistencia Ejecutiva y Operaciones',
-    descripcion:
-      'Panel operativo premium con diseño Glassmorphism enfocado en la gestión de alta dirección. Centraliza flujos críticos como agendas semanales codificadas, control de itinerarios de viaje, colas de aprobación documental (Salud/Educación), directorios de equipo en tiempo real y flujos automatizados de reclutamiento.',
-    periodo: 'En Vivo',
+    title: 'Executive Operations Center',
+    subtitle: 'ops_center',
+    description: 'exec_ops',
+    period: 'live',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'Executive Ops', 'UX/UI'],
-    githubUrl: '', 
+    githubUrl: '',
     liveUrl: 'https://ceo-assistance.vercel.app/',
-    categoria: 'automation',
+    category: 'automation',
   },
   {
-    titulo: 'PM Dashboard & Training',
-    subtitulo: 'Core Ledger · Centro de Gestión de Producto y Growth',
-    descripcion:
-      'Dashboard interactivo enfocado en la gestión de producto y analítica de crecimiento. Implementa tableros Kanban interactivos para Sprints, rastreadores de diseño, cronogramas de hitos técnicos, previsualizaciones móviles y módulos avanzados de analítica visual para embudos de conversión y retención (DAU).',
-    periodo: 'En Vivo',
+    title: 'PM Dashboard & Training',
+    subtitle: 'growth_center',
+    description: 'pm_dashboard',
+    period: 'live',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'react-beautiful-dnd', 'UX/UI'],
-    githubUrl: '', 
-    liveUrl: 'https://product-ux-gules.vercel.app/', 
-    categoria: 'ui-ux', 
+    githubUrl: '',
+    liveUrl: 'https://product-ux-gules.vercel.app/',
+    category: 'ui-ux',
   },
   {
-    titulo: 'Support-Hub-UI',
-    subtitulo: 'Omnichannel Support Hub · Phone, Chat, Scheduling & Commerce',
-    descripcion:
-      'Plataforma modular de soporte omnicanal con cola de tickets filtrable por canal, prioridad y estado, panel de chat en vivo con indicador de escritura animado, calendario de citas en modos Health y Education, lookup de órdenes con acciones de reembolso y escalación, tracker de migración de sistema y dashboard de KPIs con gráficas en tiempo real.',
-    periodo: 'En Vivo',
+    title: 'Support-Hub-UI',
+    subtitle: 'support_hub',
+    description: 'support_hub',
+    period: 'live',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'date-fns', 'Dashboard'],
     githubUrl: '',
     liveUrl: 'https://project-2-support-ui.vercel.app/',
-    categoria: 'automation',
+    category: 'automation',
   },
   {
-    titulo: 'Sales & Business Design',
-    subtitulo: 'Core Ledger · Command Center de Analítica e Interfaz',
-    descripcion:
-      'Diseño y desarrollo de un panel de control unificado enfocado en operaciones comerciales: marca, campañas de marketing, plantillas automatizadas de correo, programación social y analítica de datos en tiempo real.',
-    periodo: 'En Vivo',
+    title: 'Sales & Business Design',
+    subtitle: 'analytics_center',
+    description: 'sales_design',
+    period: 'live',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Recharts', 'UX/UI'],
     githubUrl: '',
     liveUrl: 'https://creative-sales.vercel.app/',
-    categoria: 'ui-ux',
+    category: 'ui-ux',
   },
 ];
 
-const proyectosBackend: Proyecto[] = [
+const backendProjects: Project[] = [
   {
-    titulo: 'Enterprise Dark Pipeline',
-    subtitulo: 'Real-Time Data Lifecycle Prototype',
-    descripcion:
-      'Sistema de ingestión y procesamiento de datos en segundo plano diseñado para eliminar la deriva de estado y mantener la estabilidad del sistema. Arquitectura centrada en eficiencia SQL "aburrida": modelado relacional explícito, índices B-Tree compuestos y parciales, máquina de estado determinista (NestJS) y sincronización reactiva mediante replicación WAL dual-channel vía WebSockets de Supabase hacia una UI puramente reactiva — sin polling, sin estado local duplicado.',
-    periodo: 'Prototype',
+    title: 'Enterprise Dark Pipeline',
+    subtitle: 'enterprise_pipeline',
+    description: 'enterprise_pipeline',
+    period: 'prototype',
     tags: ['React', 'NestJS', 'PostgreSQL', 'Supabase', 'TypeScript', 'Executive Ops', 'Data Pipelines', 'Real-Time Systems'],
     githubUrl: 'https://github.com/saorionline/enterprise-dark-pipeline',
-    categoria: 'backend-ops',
+    category: 'backend-ops',
   },
   {
-    titulo: 'Full-Stack Scientific Sandbox',
-    subtitulo: 'Real-Time Data Lifecycle Prototype (React · NestJS · Supabase)',
-    descripcion:
-      'Una aplicación educativa interactiva diseñada para demostrar visualmente el flujo de datos secuencial y en tiempo real a través de las tres capas core del stack. Funciona como un entorno experimental simplificado ("Scientific Sandbox") que elimina la sobrecarga de infraestructura empresarial para aislar y validar la mecánica exacta del ciclo de vida de la información. Core features: Simulación de Alta Concurrencia — botón interactivo en UI que dispara eventos críticos emulando ráfagas de peticiones simultáneas. Contrato de Datos Unificado — sincronización estricta basada en tipos e interfaces compartidas entre cliente y servidor para erradicar errores humanos. Pipeline en Tiempo Real — mutación y persistencia directa en base de datos relacional con transmisión reactiva inmediata hacia el cliente a través de sockets distribuidos.',
-    periodo: 'En Desarrollo',
+    title: 'Full-Stack Scientific Sandbox',
+    subtitle: 'scientific_sandbox',
+    description: 'scientific_sandbox',
+    period: 'development',
     tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'NestJS', 'Supabase', 'PostgreSQL', 'Architecture', 'Full-Stack', 'Real-Time Data'],
     githubUrl: 'https://github.com/saorionline/scientific-sandbox',
-    categoria: 'sandbox',
+    category: 'sandbox',
   },
 ];
 
-const habilidades: GrupoHabilidades[] = [
-  {
-    tab: 'Frontend & UX',
-    icono: '⬡',
-    habilidades: [
-      { nombre: 'React / Next.js', nivel: 5 },
-      { nombre: 'TypeScript', nivel: 5 },
-      { nombre: 'Zustand / Redux / Context API', nivel: 4 },
-      { nombre: 'React Hook Form + Zod', nivel: 4 },
-      { nombre: 'Next.js Navigation', nivel: 4 },
-      { nombre: 'Figma (UI/UX)', nivel: 3 },
-      { nombre: 'Adobe Creative Cloud', nivel: 3 },
-    ],
-  },
-  {
-    tab: 'Backend & DB',
-    icono: '⬢',
-    habilidades: [
-      { nombre: 'NestJS (Arquitectura Modular)', nivel: 5 },
-      { nombre: 'RESTful APIs', nivel: 5 },
-      { nombre: 'GraphQL', nivel: 4 },
-      { nombre: 'PostgreSQL', nivel: 4 },
-      { nombre: 'Supabase', nivel: 4 },
-      { nombre: 'Modelado Relacional', nivel: 4 },
-      { nombre: 'Pruebas Unitarias / Debugging', nivel: 3 },
-    ],
-  },
-  {
-    tab: 'Herramientas',
-    icono: '⬟',
-    habilidades: [
-      { nombre: 'Git / GitHub', nivel: 4 },
-      { nombre: 'Monorepo (Turborepo)', nivel: 4 },
-      { nombre: 'CI/CD Pipelines', nivel: 4 },
-      { nombre: 'Automatización Low-Code', nivel: 4 },
-      { nombre: 'Excel Avanzado / Office Suite', nivel: 4 },
-      { nombre: 'Slack / Discord / Zoom', nivel: 5 },
-      { nombre: 'Coordinación de Proyectos', nivel: 4 },
-    ],
-  },
-];
+// ─── Config: category → styles ───────────────────────────────────────────────
 
-// ─── Config: categoría → estilos ─────────────────────────────────────────────
-
-const categoriaConfig: Record<
-  Proyecto['categoria'],
+const categoryConfig: Record<
+  Project['category'],
   { border: string; badge: string; badgeText: string; dot: string }
 > = {
   fintech: {
@@ -239,16 +193,48 @@ const IconArrow = () => (
   </svg>
 );
 
+// ─── Language Toggle ──────────────────────────────────────────────────────────
+
+function LanguageToggle() {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const toggle = (next: string) => {
+    // Replace /en or /es prefix in the current pathname
+    const newPath = pathname.replace(/^\/(en|es)/, `/${next}`);
+    router.push(newPath);
+  };
+
+  return (
+    <div className="flex items-center gap-1 p-1 bg-slate-800/60 border border-slate-700/50 rounded-lg">
+      {(['en', 'es'] as const).map((lang) => (
+        <button
+          key={lang}
+          onClick={() => toggle(lang)}
+          className={`px-3 py-1 rounded-md text-xs font-mono font-medium transition-all duration-150 ${
+            locale === lang
+              ? 'bg-indigo-600 text-white'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          {lang.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function SkillBar({ nivel }: { nivel: number }) {
+function SkillBar({ level }: { level: number }) {
   return (
     <div className="flex gap-1 items-center">
       {[1, 2, 3, 4, 5].map((i) => (
         <div
           key={i}
           className={`h-1 w-5 rounded-full transition-all ${
-            i <= nivel ? 'bg-indigo-400' : 'bg-slate-700'
+            i <= level ? 'bg-indigo-400' : 'bg-slate-700'
           }`}
         />
       ))}
@@ -256,8 +242,27 @@ function SkillBar({ nivel }: { nivel: number }) {
   );
 }
 
-function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
-  const cfg = categoriaConfig[proyecto.categoria];
+function ProjectCard({ project }: { project: Project }) {
+  const t = useTranslations();
+  const cfg = categoryConfig[project.category];
+
+  const subtitle =
+    project.subtitle
+      ? t(`projects.subtitles.${project.subtitle}`)
+      : null;
+
+  const description = t(`projects.descriptions.${project.description}`);
+
+  const periodKey = project.period as string;
+  const period =
+    periodKey === 'live'
+      ? t('status.live')
+      : periodKey === 'development'
+      ? t('status.development')
+      : periodKey === 'prototype'
+      ? t('status.prototype')
+      : periodKey;
+
   return (
     <article
       className={`relative flex flex-col bg-slate-800/60 border border-slate-700/50 border-l-4 ${cfg.border} rounded-xl p-5 gap-4 hover:bg-slate-800 hover:border-slate-600/60 transition-all duration-200 group`}
@@ -265,28 +270,30 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <h3 className="font-mono text-sm font-medium text-white tracking-tight truncate">
-            {proyecto.titulo}
+            {project.title}
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-            {proyecto.subtitulo}
-          </p>
+          {subtitle && (
+            <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+              {subtitle}
+            </p>
+          )}
         </div>
         <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
           <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${cfg.badge}`}>
             {cfg.badgeText}
           </span>
           <span className="text-[10px] font-mono text-slate-500 whitespace-nowrap">
-            {proyecto.periodo}
+            {period}
           </span>
         </div>
       </div>
 
       <p className="text-sm text-slate-400 leading-relaxed flex-1">
-        {proyecto.descripcion}
+        {description}
       </p>
 
       <div className="flex flex-wrap gap-1.5">
-        {proyecto.tags.map((tag) => (
+        {project.tags.map((tag) => (
           <span
             key={tag}
             className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-700/70 text-slate-300 ring-1 ring-slate-600/40"
@@ -297,29 +304,29 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
       </div>
 
       <div className="flex flex-wrap gap-2 items-center mt-auto">
-        {proyecto.githubUrl && (
+        {project.githubUrl && (
           <a
-            href={proyecto.githubUrl}
+            href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 self-start text-xs font-mono text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-600/50 hover:border-slate-400/60 bg-slate-700/40 hover:bg-slate-700/80 transition-all duration-150 group-hover:translate-x-0.5"
           >
             <IconGithub size={13} />
-            ver repositorio
+            {t('ui.view_repo')}
             <span className="ml-0.5 opacity-60 group-hover:opacity-100 transition-opacity">
               <IconArrow />
             </span>
           </a>
         )}
 
-        {proyecto.liveUrl && (
+        {project.liveUrl && (
           <a
-            href={proyecto.liveUrl}
+            href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 self-start text-xs font-mono text-fuchsia-400 hover:text-fuchsia-300 px-3 py-1.5 rounded-lg border border-fuchsia-500/30 hover:border-fuchsia-500/60 bg-fuchsia-500/10 hover:bg-fuchsia-500/20 transition-all duration-150"
           >
-            <span>●</span> ver app en vivo
+            {t('ui.view_live')}
           </a>
         )}
       </div>
@@ -330,7 +337,50 @@ function ProyectoCard({ proyecto }: { proyecto: Proyecto }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Portfolio() {
-  const [tabActiva, setTabActiva] = useState(0);
+  const t = useTranslations();
+  const [activeTab, setActiveTab] = useState(0);
+
+  const skillGroups: SkillGroup[] = [
+    {
+      tab: t('skills.tabs.frontend'),
+      icon: '⬡',
+      skills: [
+        { name: 'React / Next.js', level: 5 },
+        { name: 'TypeScript', level: 5 },
+        { name: 'Zustand / Redux / Context API', level: 4 },
+        { name: 'React Hook Form + Zod', level: 4 },
+        { name: 'Next.js Navigation', level: 4 },
+        { name: 'Figma (UI/UX)', level: 3 },
+        { name: 'Adobe Creative Cloud', level: 3 },
+      ],
+    },
+    {
+      tab: t('skills.tabs.backend'),
+      icon: '⬢',
+      skills: [
+        { name: t('skills.names.nestjs_architecture'), level: 5 },
+        { name: 'RESTful APIs', level: 5 },
+        { name: 'GraphQL', level: 4 },
+        { name: 'PostgreSQL', level: 4 },
+        { name: 'Supabase', level: 4 },
+        { name: t('skills.names.relational_modeling'), level: 4 },
+        { name: t('skills.names.unit_testing'), level: 3 },
+      ],
+    },
+    {
+      tab: t('skills.tabs.tools'),
+      icon: '⬟',
+      skills: [
+        { name: 'Git / GitHub', level: 4 },
+        { name: 'Monorepo (Turborepo)', level: 4 },
+        { name: 'CI/CD Pipelines', level: 4 },
+        { name: t('skills.names.low_code_automation'), level: 4 },
+        { name: t('skills.names.advanced_excel'), level: 4 },
+        { name: 'Slack / Discord / Zoom', level: 5 },
+        { name: t('skills.names.project_coordination'), level: 4 },
+      ],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-slate-900 text-white antialiased">
@@ -342,8 +392,13 @@ export default function Portfolio() {
           <div className="absolute top-10 right-1/4 w-64 h-64 rounded-full bg-pink-600/5 blur-2xl" />
         </div>
 
+        {/* Language toggle — top right */}
+        <div className="absolute top-6 right-6 z-10">
+          <LanguageToggle />
+        </div>
+
         <span className="font-mono text-xs text-indigo-400 tracking-widest uppercase mb-5 opacity-80">
-          — portafolio 2026 —
+          {t('hero.tagline')}
         </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white mb-3">
@@ -354,13 +409,13 @@ export default function Portfolio() {
         </h1>
 
         <p className="font-mono text-sm sm:text-base text-slate-400 mb-8 max-w-md leading-relaxed">
-          Desarrolladora Híbrido: <span className="text-slate-200">Nest · React · TypeScript</span>
+          {t('hero.role')}
         </p>
 
         <p className="text-slate-500 text-sm max-w-lg leading-relaxed mb-10">
-          Arquitectura backend robusta + interfaces dinámicas escalables.
+          {t('hero.subheading')}
           <br />
-          Bogotá, Colombia · Español / English C2 / French B2
+          {t('hero.location')}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -393,52 +448,50 @@ export default function Portfolio() {
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-30">
           <div className="w-px h-8 bg-slate-500" />
-          <span className="font-mono text-[9px] tracking-widest text-slate-500">
-            scroll
-          </span>
+          <span className="font-mono text-[9px] tracking-widest text-slate-500">scroll</span>
         </div>
       </section>
 
       <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
 
-      {/* Section 1: Experiencia Front-end */}
+      {/* Section 1: Frontend Experience */}
       <section className="px-6 pt-20 pb-10 max-w-6xl mx-auto">
         <div className="mb-12">
           <span className="font-mono text-xs text-indigo-400 tracking-widest uppercase">
-            experiencia front-end
+            {t('sections.frontend.tag')}
           </span>
           <h2 className="text-2xl font-semibold text-white mt-2">
-            Interfaces de Control e Interactividad
+            {t('sections.frontend.title')}
           </h2>
           <p className="text-slate-500 text-sm mt-1">
-            {proyectosFrontend.length} proyectos · Foco en UX/UI, Estado Dinámico y Dashboards
+            {frontendProjects.length} {t('sections.frontend.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {proyectosFrontend.map((proyecto) => (
-            <ProyectoCard key={proyecto.titulo} proyecto={proyecto} />
+          {frontendProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </section>
 
-      {/* Section 2: Experiencia Back-end */}
+      {/* Section 2: Backend Experience */}
       <section className="px-6 pt-10 pb-20 max-w-6xl mx-auto">
         <div className="mb-12">
           <span className="font-mono text-xs text-cyan-400 tracking-widest uppercase">
-            experiencia back-end
+            {t('sections.backend.tag')}
           </span>
           <h2 className="text-2xl font-semibold text-white mt-2">
-            Arquitectura del Lado del Servidor y Datos
+            {t('sections.backend.title')}
           </h2>
           <p className="text-slate-500 text-sm mt-1">
-            {proyectosBackend.length} proyectos · Foco en Arquitectura Full-Stack, Datos en Tiempo Real e Infraestructura Modular
+            {backendProjects.length} {t('sections.backend.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {proyectosBackend.map((proyecto) => (
-            <ProyectoCard key={proyecto.titulo} proyecto={proyecto} />
+          {backendProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </section>
@@ -449,40 +502,40 @@ export default function Portfolio() {
       <section className="px-6 py-20 max-w-6xl mx-auto">
         <div className="mb-10">
           <span className="font-mono text-xs text-indigo-400 tracking-widest uppercase">
-            stack
+            {t('sections.stack.tag')}
           </span>
           <h2 className="text-2xl font-semibold text-white mt-2">
-            Habilidades técnicas
+            {t('sections.stack.title')}
           </h2>
         </div>
 
         <div className="flex gap-1 mb-8 p-1 bg-slate-800/60 border border-slate-700/50 rounded-xl w-fit">
-          {habilidades.map((grupo, idx) => (
+          {skillGroups.map((group, idx) => (
             <button
-              key={grupo.tab}
-              onClick={() => setTabActiva(idx)}
+              key={group.tab}
+              onClick={() => setActiveTab(idx)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                tabActiva === idx
+                activeTab === idx
                   ? 'bg-indigo-600 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
               }`}
             >
-              <span className="mr-1.5 text-xs opacity-70">{grupo.icono}</span>
-              {grupo.tab}
+              <span className="mr-1.5 text-xs opacity-70">{group.icon}</span>
+              {group.tab}
             </button>
           ))}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {habilidades[tabActiva].habilidades.map((habilidad) => (
+          {skillGroups[activeTab].skills.map((skill) => (
             <div
-              key={habilidad.nombre}
+              key={skill.name}
               className="flex items-center justify-between gap-4 bg-slate-800/50 border border-slate-700/40 rounded-xl px-4 py-3 hover:bg-slate-800/80 transition-colors duration-150"
             >
               <span className="text-sm text-slate-300 font-mono truncate">
-                {habilidad.nombre}
+                {skill.name}
               </span>
-              <SkillBar nivel={habilidad.nivel} />
+              <SkillBar level={skill.level} />
             </div>
           ))}
         </div>
@@ -497,7 +550,7 @@ export default function Portfolio() {
             ))}
           </div>
           <span className="font-mono text-[10px] text-slate-600 ml-1">
-            1 = básico · 5 = experto
+            {t('sections.stack.legend')}
           </span>
         </div>
       </section>
@@ -513,7 +566,7 @@ export default function Portfolio() {
           </a>
         </p>
         <p className="font-mono text-[10px] text-slate-700 mt-1 tracking-widest">
-          BOGOTÁ · COLOMBIA
+          {t('footer.location')}
         </p>
       </footer>
     </div>
