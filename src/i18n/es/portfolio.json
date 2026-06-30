@@ -1,13 +1,13 @@
 {
   "metadata": {
     "title": "Portafolio de Saori | Desarrolladora Web & CEO Partner",
-    "description": "Arquitectura backend robusta e interfaces dinámicas escalables. Especialista en pipelines de datos y optimización operativa."
+    "description": "Aplicar la lógica de programador para estructurar redes de automatización que escalen flujos de trabajo multicuenta sin escribir código repetitivo."
   },
   "hero": {
     "tagline": "— portafolio 2026 —",
-    "role": "Desarrolladora Híbrida: Automatización, Backend & UX/UI",
-    "subheading": "Arquitectura backend robusta + interfaces dinámicas escalables.",
-    "location": "Bogotá, Colombia · Español / English C2 / French B2"
+    "role": "Ingeniera de Automatización, Sistemas de Optimización: Enrutamiento de Webhooks / API",
+    "subheading": "Diseñadora No-Code + Desarrollo de Automatización de Monetización, NestJS, Zapier & Make",
+    "location": "Bogotá, Colombia · Tiempo Completo · Remoto"
   },
   "sections": {
     "frontend": {
@@ -28,7 +28,9 @@
   },
   "ui": {
     "view_repo": "ver repositorio",
-    "view_live": "● ver app en vivo"
+    "view_live": "● ver app en vivo",
+    "read_more": "leer más",
+    "read_less": "leer menos"
   },
   "status": {
     "live": "En Vivo",

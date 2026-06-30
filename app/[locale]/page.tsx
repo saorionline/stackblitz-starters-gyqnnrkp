@@ -31,6 +31,28 @@ interface SkillGroup {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const frontendProjects: Project[] = [
+  
+];
+
+const backendProjects: Project[] = [
+  {
+    title: 'Enterprise Dark Pipeline',
+    subtitle: 'enterprise_pipeline',
+    description: 'enterprise_pipeline',
+    period: 'prototype',
+    tags: ['React', 'NestJS', 'PostgreSQL', 'Supabase', 'TypeScript', 'Executive Ops', 'Data Pipelines', 'Real-Time Systems'],
+    githubUrl: 'https://github.com/saorionline/enterprise-dark-pipeline',
+    category: 'backend-ops',
+  },
+  {
+    title: 'Full-Stack Scientific Sandbox',
+    subtitle: 'scientific_sandbox',
+    description: 'scientific_sandbox',
+    period: 'development',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'NestJS', 'Supabase', 'PostgreSQL', 'Architecture', 'Full-Stack', 'Real-Time Data'],
+    githubUrl: 'https://github.com/saorionline/scientific-sandbox',
+    category: 'sandbox',
+  },
   {
     title: 'Executive Operations Center',
     subtitle: 'ops_center',
@@ -70,27 +92,6 @@ const frontendProjects: Project[] = [
     githubUrl: '',
     liveUrl: 'https://creative-sales.vercel.app/',
     category: 'ui-ux',
-  },
-];
-
-const backendProjects: Project[] = [
-  {
-    title: 'Enterprise Dark Pipeline',
-    subtitle: 'enterprise_pipeline',
-    description: 'enterprise_pipeline',
-    period: 'prototype',
-    tags: ['React', 'NestJS', 'PostgreSQL', 'Supabase', 'TypeScript', 'Executive Ops', 'Data Pipelines', 'Real-Time Systems'],
-    githubUrl: 'https://github.com/saorionline/enterprise-dark-pipeline',
-    category: 'backend-ops',
-  },
-  {
-    title: 'Full-Stack Scientific Sandbox',
-    subtitle: 'scientific_sandbox',
-    description: 'scientific_sandbox',
-    period: 'development',
-    tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'NestJS', 'Supabase', 'PostgreSQL', 'Architecture', 'Full-Stack', 'Real-Time Data'],
-    githubUrl: 'https://github.com/saorionline/scientific-sandbox',
-    category: 'sandbox',
   },
 ];
 
@@ -245,6 +246,7 @@ function SkillBar({ level }: { level: number }) {
 function ProjectCard({ project }: { project: Project }) {
   const t = useTranslations();
   const cfg = categoryConfig[project.category];
+  const [expanded, setExpanded] = useState(false);
 
   const subtitle =
     project.subtitle
@@ -288,9 +290,18 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      <p className="text-sm text-slate-400 leading-relaxed flex-1">
-        {description}
-      </p>
+      <div className="flex-1">
+        <p className={`text-sm text-slate-400 leading-relaxed transition-all duration-300 ${expanded ? '' : 'line-clamp-2'}`}>
+          {description}
+        </p>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
+          className="mt-1 text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-colors duration-150"
+        >
+          {expanded ? t('ui.read_less') : t('ui.read_more')}
+        </button>
+      </div>
 
       <div className="flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
@@ -402,7 +413,7 @@ export default function Portfolio() {
         </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-white mb-3">
-          Saori Isabel{' '}
+          Saori {' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-300">
             Tovar
           </span>

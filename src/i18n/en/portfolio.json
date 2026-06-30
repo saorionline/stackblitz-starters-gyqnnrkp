@@ -1,24 +1,24 @@
 {
   "metadata": {
     "title": "Saori's Portfolio | Web Developer & CEO Partner",
-    "description": "Robust backend architecture and scalable dynamic interfaces. Specialized in data pipelines and operational optimization."
+    "description": "Applying coder's logic to architect automation grids that scale multi-account workflows without writing boilerplate."
   },
   "hero": {
     "tagline": "— portfolio 2026 —",
-    "role": "Hybrid Developer: Automation, Backend & UX/UI",
-    "subheading": "Robust backend architecture + scalable dynamic interfaces.",
-    "location": "Bogotá, Colombia · Español / English C2 / French B2"
+    "role": "Automation Engineer, Systems Optimization: Webhook routing & API Workflow Architect",
+    "subheading": "No-Code Logic Designer + Conversion-Driven Automation Architect, NestJS, Zapier & Make",
+    "location": "Bogotá, Colombia · Full Time · Remote"
   },
   "sections": {
     "frontend": {
-      "tag": "front-end experience",
-      "title": "Control Interfaces & Interactivity",
-      "subtitle": "projects · Focus on UX/UI, Dynamic State, and Dashboards"
+      "tag": "automation grid",
+      "title": "Workflow Design & Orchestration",
+      "subtitle": "projects · Focus on Make, Zapier, Webhook Routing, and Funnel Logic"
     },
     "backend": {
-      "tag": "back-end experience",
+      "tag": "back-end orchestration",
       "title": "Server-Side Architecture & Data",
-      "subtitle": "projects · Focus on Full-Stack Architecture, Real-Time Data, and Modular Infrastructure"
+      "subtitle": "projects · Focus on on NestJS, Supabase, Queue Management, and API Integration + Full-Stack Architecture, Real-Time Data, and Modular Infrastructure"
     },
     "stack": {
       "tag": "stack",
@@ -28,7 +28,9 @@
   },
   "ui": {
     "view_repo": "view repository",
-    "view_live": "● view live app"
+    "view_live": "● view live app",
+    "read_more": "read more",
+    "read_less": "read less"
   },
   "status": {
     "live": "Live",
